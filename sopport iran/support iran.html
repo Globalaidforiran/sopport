@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Aid for Iran</title>
+    <style>
+        :root {
+            --iran-green: #239f40;
+            --iran-white: #ffffff;
+            --iran-red: #da0000;
+            --iran-red-dark: #b80000;
+            --gold: #d4af37;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            overflow-x: hidden;
+        }
+
+        /* Flag Header Section */
+        .flag-header {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            min-height: 500px;
+            background: linear-gradient(to bottom,
+                var(--iran-green) 33.33%,
+                var(--iran-white) 33.33%,
+                var(--iran-white) 66.66%,
+                var(--iran-red) 66.66%
+            );
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .flag-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://kimi-web-img.moonshot.cn/img/media.istockphoto.com/520cb043ca6812e178704766fb2406b952b71917.jpg') center/cover;
+            opacity: 0.15;
+            animation: wave 20s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(1deg); }
+        }
+
+        .emblem-container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+            border: 4px solid var(--gold);
+        }
+
+        .emblem {
+            font-size: 100px;
+            color: var(--iran-red);
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            padding: 0 1rem;
+        }
+
+        .header-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .header-content p {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        /* Emergency Banner */
+        .emergency-banner {
+            background: var(--iran-red);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emergency-banner::before {
+            content: '⚠️';
+            margin-right: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: -50px auto 0;
+            padding: 0 1.5rem 3rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        section {
+            background: white;
+            padding: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--iran-green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, transparent 50%, rgba(35, 159, 64, 0.05) 50%);
+            border-radius: 0 0 0 100%;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--iran-red-dark);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--iran-green), var(--gold));
+            border-radius: 2px;
+        }
+
+        p, li {
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            line-height: 1.8;
+            color: #444;
+        }
+
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+            aspect-ratio: 4/3;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Mission Section */
+        .mission {
+            text-align: center;
+            background: linear-gradient(to bottom, white, #f8f9fa);
+        }
+
+        .mission p {
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #eee;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--iran-red);
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Impact Section */
+        .impact ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .impact li {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 1.8rem;
+            border-radius: 12px;
+            border-left: 6px solid var(--iran-green);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(35, 159, 64, 0.03) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .impact li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .impact li:hover::before {
+            opacity: 1;
+        }
+
+        .impact li strong {
+            color: var(--iran-red-dark);
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Donate Section */
+        .donate {
+            text-align: center;
+            background: linear-gradient(135deg, var(--iran-red) 0%, var(--iran-red-dark) 100%);
+            color: white;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .donate::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+        }
+
+        .donate h2 {
+            color: white;
+        }
+
+        .donate h2::after {
+            background: var(--gold);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .donate > p {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .donate-button {
+            background: linear-gradient(135deg, var(--gold) 0%, #b8941f 100%);
+            color: var(--dark);
+            border: none;
+            padding: 1.3rem 3rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 280px;
+            touch-action: manipulation;
+        }
+
+        .donate-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .donate-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Crypto Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            border: 3px solid var(--gold);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--iran-green) 0%, #1e8c3a 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .close-modal:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .crypto-option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .crypto-option:hover {
+            border-color: var(--iran-green);
+            box-shadow: 0 5px 20px rgba(35, 159, 64, 0.1);
+        }
+
+        .crypto-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .crypto-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .btc-icon { background: #f7931a; }
+        .eth-icon { background: #627eea; }
+        .sol-icon { background: #9945ff; }
+        .usdt-icon { background: #26a17b; }
+        .usdc-icon { background: #2775ca; }
+
+        .crypto-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        .crypto-fullname {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .crypto-address {
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            color: #495057;
+            position: relative;
+            padding-right: 50px;
+            line-height: 1.4;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--iran-green);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            font-size: 1.1rem;
+        }
+
+        .copy-btn:hover {
+            background: #1e8c3a;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .copy-btn.copied {
+            background: var(--iran-red);
+        }
+
+        .copy-tooltip {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: var(--dark);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .copy-tooltip.show {
+            opacity: 1;
+            top: -50px;
+        }
+
+        .security-note {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid var(--gold);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #856404;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #000 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 2rem;
+            border-top: 5px solid var(--iran-red);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .footer-values {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .impact ul {
+                grid-template-columns: repeat(2, 1fr);
+            }
+           
+            .image-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            main {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .mission, .impact, .donate { grid-column: span 2; }
+           
+            .image-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Emergency Banner -->
+    <div class="emergency-banner">
+        URGENT: Humanitarian Crisis in Iran — Your Immediate Support Needed
+    </div>
+
+    <!-- Flag Header -->
+    <header class="flag-header">
+        <div class="emblem-container">
+            <div class="emblem">☫</div>
+        </div>
+        <div class="header-content">
+            <h1>Global Aid for Iran</h1>
+            <p>Providing Humanitarian Support During Crisis</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Emotional Images Section -->
+        <section class="image-section fade-in" style="grid-column: span 2;">
+            <h2>The Human Cost</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="https://kimi-web-img.moonshot.cn/img/liberties.aljazeera.com/7c020d008257c9c686933b15a9764de889a797d3.webp" alt="Families in displacement camp">
+                    <div class="image-overlay">Families displaced by conflict seeking shelter</div>
+                </div>
+                <div class="image-card">
+                    <img src="https://kimi-web-img.moonshot.cn/img/media.cnn.com/c6a8e598eb21f92341d84c5a89ce0e66b700f767.JPG" alt="Child receiving medical care">
+                    <div class="image-overlay">Children in urgent need of medical attention</div>
+                </div>
+                <div class="image-card">
+                    <img src="https://kimi-web-img.moonshot.cn/img/www.wvi.org/119792b3a345ddbc0b39f70b477b0c3ac0c7d410.jpeg" alt="Mother and child in crisis">
+                    <div class="image-overlay">Mothers protecting their children amidst chaos</div>
+                </div>
+                <div class="image-card">
+                    <img src="https://kimi-web-img.moonshot.cn/img/www.unicefusa.org/4f8b63899260930bd4594770e59b3af4061cff52.webp" alt="Children affected by crisis">
+                    <div class="image-overlay">Innocent lives hanging in the balance</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mission fade-in">
+            <h2>Our Mission</h2>
+            <p>In the midst of the ongoing conflict in Iran, countless families are facing unimaginable hardships. Global Aid for Iran is a worldwide charity dedicated to delivering essential aid — food, medical supplies, shelter, and education support — to those most affected.</p>
+            <p>We work with trusted local partners to ensure help reaches people quickly, transparently, and effectively. Your generosity can save lives and restore hope.</p>
+           
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">Families Helped</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Transparent</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Crisis Response</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">0%</span>
+                    <span class="stat-label">Admin Fees</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="impact fade-in">
+            <h2>How Your Donation Helps</h2>
+            <ul>
+                <li>
+                    <strong>🍞 Food & Clean Water</strong>
+                    Nutritious meals and safe drinking water for displaced families who have lost everything.
+                </li>
+                <li>
+                    <strong>🏥 Medical Support</strong>
+                    Medicines, first-aid kits, and essential equipment for clinics and hospitals overwhelmed by casualties.
+                </li>
+                <li>
+                    <strong>🏠 Emergency Shelter</strong>
+                    Tents, blankets, and repairs to damaged homes before winter arrives.
+                </li>
+                <li>
+                    <strong>📚 Education & Protection</strong>
+                    School materials and safe learning spaces for children whose education has been disrupted.
+                </li>
+            </ul>
+        </section>
+
+        <section class="donate fade-in">
+            <h2>Join Us — Every Gift Matters</h2>
+            <p>Your support brings immediate relief and long-term hope to people in Iran. Every donation, no matter the size, directly impacts a life in crisis.</p>
+            <button class="donate-button" onclick="openModal()">❤️ Donate Now</button>
+        </section>
+    </main>
+
+    <!-- Crypto Donation Modal -->
+    <div class="modal-overlay" id="donationModal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+                <h3>Make Your Donation</h3>
+                <p>Select your preferred cryptocurrency</p>
+            </div>
+           
+            <div class="modal-body">
+                <!-- Bitcoin -->
+                <div class="crypto-option">
+                    <div class="crypto-header">
+                        <div class="crypto-icon btc-icon">₿</div>
+                        <div>
+                            <div class="crypto-name">Bitcoin</div>
+                            <div class="crypto-fullname">BTC Network</div>
+                        </div>
+                    </div>
+                    <div class="crypto-address">
+                        bc1ql340duyldnrxgdyu5vnt3f0sdxlgym0fxszvjd
+                        <button class="copy-btn" onclick="copyToClipboard(this, 'bc1ql340duyldnrxgdyu5vnt3f0sdxlgym0fxszvjd')" title="Copy Address">
+                            📋
+                        </button>
+                        <div class="copy-tooltip">Copied!</div>
+                    </div>
+                </div>
+
+                <!-- Ethereum -->
+                <div class="crypto-option">
+                    <div class="crypto-header">
+                        <div class="crypto-icon eth-icon">Ξ</div>
+                        <div>
+                            <div class="crypto-name">Ethereum</div>
+                            <div class="crypto-fullname">ERC-20 Network</div>
+                        </div>
+                    </div>
+                    <div class="crypto-address">
+                        0x8c91bbb28956d1ae9c64983550466449b8401b81
+                        <button class="copy-btn" onclick="copyToClipboard(this, '0x8c91bbb28956d1ae9c64983550466449b8401b81')" title="Copy Address">
+                            📋
+                        </button>
+                        <div class="copy-tooltip">Copied!</div>
+                    </div>
+                </div>
+
+                <!-- Solana -->
+                <div class="crypto-option">
+                    <div class="crypto-header">
+                        <div class="crypto-icon sol-icon">◎</div>
+                        <div>
+                            <div class="crypto-name">Solana</div>
+                            <div class="crypto-fullname">SOL Network</div>
+                        </div>
+                    </div>
+                    <div class="crypto-address">
+                        CDRoG6jBPw7yeufb67FCtELEQiuVzuAq5mYeeKP4HKwH
+                        <button class="copy-btn" onclick="copyToClipboard(this, 'CDRoG6jBPw7yeufb67FCtELEQiuVzuAq5mYeeKP4HKwH')" title="Copy Address">
+                            📋
+                        </button>
+                        <div class="copy-tooltip">Copied!</div>
+                    </div>
+                </div>
+
+                <!-- USDT -->
+                <div class="crypto-option">
+                    <div class="crypto-header">
+                        <div class="crypto-icon usdt-icon">₮</div>
+                        <div>
+                            <div class="crypto-name">Tether</div>
+                            <div class="crypto-fullname">ERC-20 Network</div>
+                        </div>
+                    </div>
+                    <div class="crypto-address">
+                        0x8c91bbb28956d1ae9c64983550466449b8401b81
+                        <button class="copy-btn" onclick="copyToClipboard(this, '0x8c91bbb28956d1ae9c64983550466449b8401b81')" title="Copy Address">
+                            📋
+                        </button>
+                        <div class="copy-tooltip">Copied!</div>
+                    </div>
+                </div>
+
+                <!-- USDC -->
+                <div class="crypto-option">
+                    <div class="crypto-header">
+                        <div class="crypto-icon usdc-icon">$</div>
+                        <div>
+                            <div class="crypto-name">USD Coin</div>
+                            <div class="crypto-fullname">ERC-20 Network</div>
+                        </div>
+                    </div>
+                    <div class="crypto-address">
+                        0x8c91bbb28956d1ae9c64983550466449b8401b81
+                        <button class="copy-btn" onclick="copyToClipboard(this, '0x8c91bbb28956d1ae9c64983550466449b8401b81')" title="Copy Address">
+                            📋
+                        </button>
+                        <div class="copy-tooltip">Copied!</div>
+                    </div>
+                </div>
+
+                <div class="security-note">
+                    <span>🔒</span>
+                    <div>
+                        <strong>Security Notice:</strong> Please verify all addresses carefully before donating.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Global Aid for Iran | Contact: Globalaidforiran@proton.me</p>
+        <div class="footer-values">
+            <span>Transparency</span>
+            <span>•</span>
+            <span>Accountability</span>
+            <span>•</span>
+            <span>Impact</span>
+        </div>
+    </footer>
+
+    <script>
+        // Modal Functions
+        function openModal() {
+            document.getElementById('donationModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (!event || event.target === document.getElementById('donationModal') || event.target.classList.contains('close-modal')) {
+                document.getElementById('donationModal').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Copy to Clipboard Function
+        function copyToClipboard(btn, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Show copied state
+                btn.classList.add('copied');
+                btn.innerHTML = '✓';
+               
+                // Show tooltip
+                const tooltip = btn.nextElementSibling;
+                tooltip.classList.add('show');
+               
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '📋';
+                    tooltip.classList.remove('show');
+                }, 2000);
+            }).catch(err => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+               
+                btn.classList.add('copied');
+                btn.innerHTML = '✓';
+                const tooltip = btn.nextElementSibling;
+                tooltip.classList.add('show');
+               
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '📋';
+                    tooltip.classList.remove('show');
+                }, 2000);
+            });
+        }
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
